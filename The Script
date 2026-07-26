@@ -173,7 +173,7 @@ local supportedThemes = {
 	["rbxassetid://126135255805588"] = "Some Gasharpoon SFX",
 	["rbxassetid://123200925377048"] = "Gasharpoon HARPOONERS FIRE",
 	["rbxassetid://119285029803606"] = "Gasharpoon Corrupted Energy Windup",
-	["rbxassetid://120861873503284"] = "THE FAULT LIES WITH YOU, ISMAIL",
+	["rbxassetid://120861873503284"] = "THE FAULT LIES WITH YOU, ISHMAIL",
 
 -- Shedletsky (Possibly Others?)
 	["rbxassetid://115267992424648"] = "Shedletsky Swing Windup High Pitched",

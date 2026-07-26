@@ -1,0 +1,225 @@
+-- THIS SCRIPT IS AN IMPROVED VERSION FROM https://scriptblox.com/script/TAPH-Forsaken-Bring-back-old-Last-Man-Standing-34488
+--IF YOUR FILE ISN'T MP3, CONVERT IT. I RECCOMEND
+-- PUT THE MP3 YOU WANT TO USE INTO THE "ForsakenCustomLms" FOLDER IN YOUR EXECUTORS WORKSPACE & NAME IT TO WHAT YOU WANT TO CHANGE HERE. E.G: FAMILIAR RUINS AMBIENCE
+-- THEN RUN THE SCRIPT. PRESS F9 (console) AND JUST READ WHAT IT SAYS
+-- IF YOU HAVE ANY SUGGESTIONS, COMMENT THEM UNDER THE SCRIPTBLOX SCRIPT.
+-- THIS SCRIPT WILL RECIEVE UPDATES AT SCRIPTBLOX.
+-- THIS SCRIPT HAS ONLY BEEN TESTED ON POTASSIUM.
+-- FORSAKEN DOESN'T DETECTED AGAINST DEX (I use dex++,) SO IF YOU WANT TO ADD MORE, USE DEX TO FIND IT.
+-- IF YOU ADD MORE STUFF, IT WOULD BE A COURTESY TO PUT THE AUDIO ID AND THE NAME OF IT SO I CAN ADD IT HERE, AS I HAVE TO MANUALLY ADD EVERYTHING.
+-- WORKS AS OF 26/07/26 01:11 PM (GMT) IN A PUBLIC SERVER.
+
+local themes = workspace.Themes
+local folderName = "ForsakenCustomLMS"
+
+if makefolder and isfolder and not isfolder(folderName) then
+	makefolder(folderName)
+end
+
+local supportedThemes = {
+	-- last man standing - standard
+	["rbxassetid://71057332615441"] = "A GRAVE SOUL (NOW, RUN)",
+	["rbxassetid://115884097233860"] = "CREATION OF HATRED",
+	["rbxassetid://80564889711353"] = "PLEAD",
+	
+	-- last man standing - skins
+	["rbxassetid://134062685653533"] = "Through Patches of Violet",
+
+-- OLD VANITY SLASHER, NOT NEW ONE
+	["rbxassetid://137266220091579"] = "Vanity Slasher",
+	["rbxassetid://90022574613230"] = "CLOSE TO ME",
+	["rbxassetid://130101085745481"] = "BURNOUT",
+	["rbxassetid://127298326178102"] = "COMPASS",
+	["rbxassetid://122146196733152"] = "SMILE",
+
+
+	--Map Ambience
+
+	["rbxassetid://136551777057968"] = "Roblox HQ Ambience",
+	["rbxassetid://138292231224220"] = "Gas Station Ambience",
+	["rbxassetid://127722332891606"] = "Glass Houses Ambience",
+	["rbxassetid://134031985009500"] = "Familiar Ruins Ambience",
+	
+	-- Dances
+
+	["rbxassetid://101625034966758"] = "Kanton",
+	["rbxassetid://107391158617439"] = "Static",
+	["rbxassetid://109474987384441"] = "Hakari",
+	["rbxassetid://124729309247802"] = "Pick Up",
+	["rbxassetid://92797787946449"] = "Aint No Lovin My Man",
+	["rbxassetid://123710398999935"] = "Mesmeriser",
+	["rbxassetid://127550001365624"] = "Caramell",
+	["rbxassetid://102007640057607"] = "Distraction",
+	["rbxassetid://102253665730313"] = "Skeleton",
+	["rbxassetid://104235713087821"] = "Chicken Dance",
+	["rbxassetid://104252762288160"] = "With Friends",
+	["rbxassetid://108553856293180"] = "Pop Dance",
+	["rbxassetid://109733678890693"] = "TEN AM",
+	["rbxassetid://118582448199737"] = "Poisoned",
+	["rbxassetid://121216788631381"] = "Best Survivor",
+	["rbxassetid://121568618582505"] = "Griddy",
+	["rbxassetid://122842879682932"] = "Khalid",
+	["rbxassetid://123179402505565"] = "Wait",
+	["rbxassetid://123571142022763"] = "PYT",
+	["rbxassetid://131274843582926"] = "Egrolled",
+	["rbxassetid://133954185831066"] = "Bag Up",	
+
+	-- skin chase themes
+
+	-- Gasharpoon
+	["rbxassetid://140475250158598"] = "Gasharpoon Chase",
+	["rbxassetid://73210545913242"] = "Gasharpoon Layer 1",
+	["rbxassetid://93724669654335"] = "Gasharpoon Layer 2",
+	["rbxassetid://105569518768561"] = "Gasharpoon Layer 3",
+
+-- Noli [UNFINISHED]
+	["rbxassetid://92391154089183"] = "Noli Layer 3",
+	["rbxassetid://105569529052440"] = "Noli Layer 2",
+	["rbxassetid://84531768750039"] = "Noli Layer 1",
+
+-- Azure [UNFINISHED]
+	["rbxassetid://75176543381898"] = "Azure Chase",
+
+-- Yourself [UNFINISHED]
+	["rbxassetid://112211011029434"] = "Yourself Layer 1",
+
+-- 1X1X1X1
+	["rbxassetid://76405677281653"] = "1x1x1x1 Chase",
+	["rbxassetid://114451626488943"] = "1x1x1x1 Layer 1",
+	["rbxassetid://122840570072160"] = "1x1x1x1 Layer 2",
+	["rbxassetid://74481836892071"] = "1x1x1x1 Layer 3",
+
+-- Colour & Electricity
+	["rbxassetid://136407418183318"] = "Colour & Electricity Layer 1",
+	["rbxassetid://84053260582422"] = "Colour & Electricity Layer 2",
+	["rbxassetid://140407458967042"] = "Colour & Electricity Layer 3",
+	["rbxassetid://113054274408748"] = "Colour & Electricity Chase",
+	
+
+	-- non skin related stuff
+
+-- 1X1X1X1
+	["rbxassetid://91495033241141"] = "1x1x1x1 Eye Rip",
+	["rbxassetid://105934041806374"] = "1x1x1x1 Entanglement Use",
+	["rbxassetid://100321250424257"] = "1x1x1x1 Sword Hit",
+	["rbxassetid://120877949577353"] = "1x1x1x1 Ressurection Thing",
+	["rbxassetid://136644374644573"] = "1x1x1x1 Mass Infection Shockwave",
+
+-- C00lkid
+	["rbxassetid://120861873503284"] = "C00lkid Intro",
+
+-- Azure
+	["rbxassetid://122888409203805"] = "Azure Walk",
+	["rbxassetid://126189791987548"] = "Azure BORN AGAIN",
+	["rbxassetid://123017056166365"] = "Azure Second life Dont Deserve First",
+
+-- Two Time
+	["rbxassetid://6556968450"] = "Two Time Crouch",
+	["rbxassetid://86710781315432"] = "Two Time Stab",
+	["rbxassetid://96032371062643"] = "Two Time Stab Landed",
+
+-- Dusekkar
+	["rbxassetid://91174954264731"] = "Dusekkar Wand SFX",
+	["rbxassetid://88967578065672"] = "Dusekkar Wand Hit SFX",
+	["rbxassetid://72368725251506"] = "Dusekkar Shield Break",
+
+-- Noli (Theres a shit tonne)
+	["rbxassetid://102261382920667"] = "Noli Starting Sound",
+	["rbxassetid://139682612041479"] = "Noli Generator Glitch1",
+	["rbxassetid://3359047385"] = "Noli Generator Glitch2",
+	["rbxassetid://95524724737837"] = "Noli Voidstar Throw Start",
+	["rbxassetid://106145041472451"] = "Noli Generator TP Sound",
+	["rbxassetid://113037804008732"] = "Noli Zooming Sound",
+	["rbxassetid://89355086113310"] = "Noli Pranked SFX",
+	["rbxassetid://89332702462626"] = "Noli Stun SFX",
+	["rbxassetid://78344423946580"] = "Noli Kill Sound",
+	["rbxassetid://80760319411525"] = "Noli Markiplyer",
+	["rbxassetid://99769633154277"] = "Noli Generator Stol Stol",
+	["rbxassetid://100966549431630"] = "Glitchy C00lkid Im telling Dad",
+
+	["rbxassetid://85635774971278"] = "Medkit Using SFX",
+
+	["rbxassetid://84766394210518"] = "Speed Boost SFX",
+
+-- John Doe
+	["rbxassetid://90819435118493"] = "John Doe Hitting",
+	["rbxassetid://122795850954647"] = "John Doe Win Screen",
+	["rbxassetid://127453218558340"] = "Unstoppable Ability Activated",
+
+	["rbxassetid://17837549788"] = "Killer Stun SFX",
+
+	["rbxassetid://393621716"] = "Heartbeat",
+
+-- Guest666
+	["rbxassetid://131659092221462"] = "Guest666 Scream Start",
+	["rbxassetid://132684357236758"] = "Guest666 Scream End",
+
+	["rbxassetid://118885902688670"] = "Bloxy Cola Drink",
+
+-- Taph (Possibly Others?)
+	["rbxassetid://11956590"] = "Tripmine Throw",
+	["rbxassetid://11984351"] = "Subspace Tripmine Explosion",
+
+-- Gasharpoon Section (he has alot of shit)
+	["rbxassetid://128291051167484"] = "Gasharpoon Breathing",
+	["rbxassetid://76980089246841"] = "All That Protection Stacking",
+	["rbxassetid://70896525540231"] = "Gasharpoon TRY AND BLOCK THIS",
+	["rbxassetid://123863218582501"] = "Gasharpoon Grunting",
+	["rbxassetid://119835038613933"] = "Gasharpon She d Curse You",
+	["rbxassetid://135963818466991"] = "Gasharpoon Just An Old Salt",
+	["rbxassetid://131060540298631"] = "Gasharpoon I Am The Only One That Matters",
+	["rbxassetid://122230370780087"] = "Gasharpoon Laugh",
+	["rbxassetid://77695191549479"] = "Gasharpoon Manic Laughing",
+	["rbxassetid://126135255805588"] = "Some Gasharpoon SFX",
+	["rbxassetid://123200925377048"] = "Gasharpoon HARPOONERS FIRE",
+	["rbxassetid://119285029803606"] = "Gasharpoon Corrupted Energy Windup",
+	["rbxassetid://120861873503284"] = "THE FAULT LIES WITH YOU, ISMAIL",
+
+-- Shedletsky (Possibly Others?)
+	["rbxassetid://115267992424648"] = "Shedletsky Swing Windup High Pitched",
+	["rbxassetid://12222225"] = "Shedletsky Swing Windup",
+	["rbxassetid://12222208"] = "Shedletsky Swing End",
+
+-- Elliot
+	["rbxassetid://114810361288106"] = "Elliot Pizza Throw",
+	["rbxassetid://18196908747"] = "Elliot Pizza Eaten",
+
+-- Jason
+	["rbxassetid://112390922764994"] = "Jason Raging Pace",
+	["rbxassetid://112809109188560"] = "Jason Slash",
+
+	["rbxassetid://78664542770211"] = "30 Seconds Left",
+
+-- Lobby Themes
+	["rbxassetid://113613352374472"] = "DAMNATION (Lobby Theme)",
+	["rbxassetid://87640825833577"] = "Azure Lobby Theme",
+
+	["rbxassetid://79222929114377"] = "Retro Walk Sound"
+
+}
+
+if themes and not _G.Connection then
+	print("[OST REPLACE | Info] Put your .mp3 files inside the '" .. folderName .. "' folder in your workspace.")
+	print("[OST REPLACE | Example] Path: workspace/" .. folderName .. "/A GRAVE SOUL (NOW, RUN).mp3")
+
+	print("[OST REPLACE | Status] Running! To stop the script, run it again.")
+	_G.Connection = themes.ChildAdded:Connect(function(child)
+		if child.SoundId ~= nil then
+			local name = supportedThemes[child.SoundId]
+			if name then
+				local relativePath = folderName .. "/" .. name .. ".mp3"
+				local fileMP3 = isfile(relativePath)
+				print("[OST REPLACE | SUPPORTED] CURRENTLY PLAYING: ".. name)
+
+				if fileMP3 then
+					print("[OST REPLACE | REPLACED] Replacing with custom song..")
+					child.SoundId = getcustomasset(relativePath, false)
+				end
+			end
+		end
+	end)
+else
+	print("[OST REPLACE | Status] Stopped!")
+	_G.Connection:Disconnect()
+	_G.Connection = nil
+end
